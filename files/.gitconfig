@@ -1,0 +1,7 @@
+[alias]
+	st = status
+	aa = add --all
+	cm = commit -m
+
+[color]
+	ui = true
