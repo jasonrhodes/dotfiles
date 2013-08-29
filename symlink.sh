@@ -24,3 +24,5 @@ do
 		ln -s $f $linked
 	fi
 done
+
+source ~/.bash_profile
