@@ -5,3 +5,8 @@
 
 [color]
 	ui = true
+
+# Change these to your own details, obviously
+[user]
+	name = Jason Rhodes
+	email = jason.matthew.rhodes@gmail.com
