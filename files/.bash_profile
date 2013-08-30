@@ -78,12 +78,19 @@ function parse_git_branch {
 function parse_git_dirty {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
 }
+# function check_if_git {
+#   [ "$(parse_git_branch)" != "" ] && echo "[${GREEN}\$(parse_git_branch)${RED}\$(parse_git_dirty)${WHITE}]${NO_COLOR} "
+# }
 
 # alias __git_ps1="git branch 2>/dev/null | grep '*' | sed 's/* \(.*\)/(\1)/'"
 
-export PS1="${PURPLE}\h${WHITE}[${YELLOW}\w${WHITE}]${WHITE}[${GREEN}\$(parse_git_branch)${RED}\$(parse_git_dirty)${WHITE}]${NO_COLOR} "
+
+# export PS1="${PURPLE}\h${WHITE}[${YELLOW}\w${WHITE}]${WHITE}${NO_COLOR}$(check_if_git) "
+export PS1="${BLUE}\h:${YELLOW}\w${WHITE}\$(__git_ps1 '${WHITE}[${GREEN}%s${RED}'\$(parse_git_dirty)'${WHITE}]')${WHITE}${NO_COLOR} $ "
 export PS2=" > "
 export PS4=" + "
+
+
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
