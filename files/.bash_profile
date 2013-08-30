@@ -1,5 +1,5 @@
 # PATH var
-export PATH=/usr/local/bin/pear/bin:/usr/local/bin:/usr/bin/apache-ant:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/capistrano-2.11.2/bin:/usr/local/bin/composer:/usr/local/Cellar/php54/5.4.12/bin:/usr/local/share/npm/bin:$PATH
+export PATH=$HOME/pear/bin:/usr/local/bin/pear/bin:/usr/local/bin:/usr/bin/apache-ant:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/capistrano-2.11.2/bin:/usr/local/bin/composer:/usr/local/Cellar/php54/5.4.12/bin:/usr/local/share/npm/bin:$PATH
 export GIT_MERGE_AUTOEDIT=no
 
 # Command Prompt (possibly overwritten later with colored Git prompt)
@@ -11,6 +11,14 @@ alias la="ls -la"
 alias stopmysql="sudo launchctl unload -w /Library/LaunchDaemons/com.mysql.mysqld.plist"
 alias startmysql="sudo launchctl load -w /Library/LaunchDaemons/com.mysql.mysqld.plist"
 
+# Show/hide hidden files
+alias showhiddenfiles="defaults write com.apple.Finder AppleShowAllFiles TRUE && killall Finder && open /System/Library/CoreServices/Finder.app"
+alias hidehiddenfiles="defaults write com.apple.Finder AppleShowAllFiles FALSE && killall Finder && open /System/Library/CoreServices/Finder.app"
+
+# Download ALL images from Hub production database. Hint: You have to be on JHU network or VPN
+alias gethubimages="mkdir -p ~/vhosts/hub/public/factory/sites/default/files && scp webuser@esgjhumktgprod.esg.johnshopkins.edu:/var/www/html/hub/shared/files/* ~/vhosts/hub/public/factory/sites/default/files"
+
+
 # Git Aliases (kept in .gitconfig)
 
 # SSH Aliases
@@ -21,9 +29,11 @@ alias sshwebuserprod="ssh webuser@esgjhumktgprod.esg.johnshopkins.edu"
 
 
 # RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-[[ -s "$HOME/.rvm/scripts/rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm/scripts/rvm" # Load RVM function
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# [[ -s "$HOME/.rvm/scripts/rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm/scripts/rvm" # Load RVM function
 
+# rbenv (the better ruby version manager, IMO)
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 ##
 # Bash completion scripts
@@ -66,7 +76,7 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
 }
 
 # alias __git_ps1="git branch 2>/dev/null | grep '*' | sed 's/* \(.*\)/(\1)/'"
@@ -74,13 +84,6 @@ function parse_git_dirty {
 export PS1="${PURPLE}\h${WHITE}[${YELLOW}\w${WHITE}]${WHITE}[${GREEN}\$(parse_git_branch)${RED}\$(parse_git_dirty)${WHITE}]${NO_COLOR} "
 export PS2=" > "
 export PS4=" + "
-
-#show/hide hidden files
-alias showhiddenfiles="defaults write com.apple.Finder AppleShowAllFiles TRUE && killall Finder && open /System/Library/CoreServices/Finder.app"
-alias hidehiddenfiles="defaults write com.apple.Finder AppleShowAllFiles FALSE && killall Finder && open /System/Library/CoreServices/Finder.app"
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-alias gethubimages="mkdir -p ~/vhosts/hub/public/factory/sites/default/files && scp webuser@esgjhumktgprod.esg.johnshopkins.edu:/var/www/html/hub/shared/files/* ~/vhosts/hub/public/factory/sites/default/files"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
