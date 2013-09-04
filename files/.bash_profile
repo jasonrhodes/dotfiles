@@ -86,7 +86,7 @@ function parse_git_dirty {
 
 
 # export PS1="${PURPLE}\h${WHITE}[${YELLOW}\w${WHITE}]${WHITE}${NO_COLOR}$(check_if_git) "
-export PS1="${CYAN}\h:\w${WHITE} \$(__git_ps1 '${WHITE}[${BOLD_GREEN}%s${BOLD_RED}'\$(parse_git_dirty)'${WHITE}]')${WHITE}${NO_COLOR} $ "
+export PS1="${CYAN}\u@\h${WHITE}[${YELLOW}\w${WHITE}]\$(__git_ps1 '${WHITE}[${BOLD_GREEN}%s${BOLD_RED}'\$(parse_git_dirty)'${WHITE}]')${WHITE}${NO_COLOR} $ "
 export PS2=" > "
 export PS4=" + "
 
