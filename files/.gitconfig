@@ -8,6 +8,9 @@
 [color]
 	ui = true
 
+[push]
+	default = upstream
+
 # Change these to your own details, obviously
 [user]
 	name = Jason Rhodes
