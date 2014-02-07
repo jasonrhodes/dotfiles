@@ -1,9 +1,11 @@
 # PATH var
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/.node/bin:$PATH
+export PATH=$HOME/.node/bin:$HOME/.ruby/default/bin:/usr/local/bin:/usr/local/sbin:$PATH
+
+# Turn off setting so git won't ask for commit message on merge
 export GIT_MERGE_AUTOEDIT=no
 
-# Command Prompt (possibly overwritten later with colored Git prompt)
-# export PS1="\W $ "
+# Change default installation for ruby gems
+export GEM_HOME=$HOME/.ruby/default
 
 # Custom Aliases
 alias ..="cd .."
